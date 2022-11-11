@@ -1,4 +1,7 @@
 # cus-shopping-car-service
+
+## Postman Collections
+> https://github.com/ShoppingCarProject/cus-shopping-car-service/blob/develop/src/main/resources/cus-collection.postman_collection.json
 ## how to start de project: 
 >Download repository
 

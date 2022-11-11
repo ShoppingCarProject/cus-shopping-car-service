@@ -16,7 +16,12 @@ import com.cus.shopping.dao.ProductsCarDao;
 import com.cus.shopping.model.ProductsCar;
 import com.cus.shopping.model.Response;
 import com.cus.shopping.model.User;
-
+/**
+ * for handle the shopping car
+ * 
+ * @author Isaias
+ *
+ */
 @Service
 public class ProductsCarService {
 	
@@ -34,6 +39,13 @@ public class ProductsCarService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
+	/**
+	 * Save a product on the shoppingcar for do payment after.
+	 * 
+	 * @param id
+	 * @param token
+	 * @return
+	 */
 	public ResponseEntity<?> saveOnCar(Integer id , String token) {
 		try {			
 			User user = auth.autenticate(token);
@@ -42,6 +54,9 @@ public class ProductsCarService {
 			}			
 			String finalUrl = url.concat("products/").concat(id.toString());
 			Product products = restTemplate.getForObject(finalUrl, Product.class);
+			if(products == null) {
+				return new ResponseEntity<Response>(new Response("400" ,String.format("Product with id %s does't exist", id)) , HttpStatus.BAD_REQUEST);
+			}
 			productsService.save(toParseProduct(products, user , id));
 			logger.info(products.toString());
 			return new ResponseEntity<Product>( products, HttpStatus.CREATED);
@@ -54,6 +69,13 @@ public class ProductsCarService {
 	
 	}
 	
+	/**
+	 * Get products of the client that is owner of token.
+	 * all products on the shopping car.
+	 * 
+	 * @param token
+	 * @return
+	 */
 	public  ResponseEntity<?> getMyProducts(String token){
 		try {
 			User user = auth.autenticate(token);
@@ -72,7 +94,11 @@ public class ProductsCarService {
 		}
 		
 	}
-	
+	/**
+	 * Get number of products on my shoppingcar, of user owner of token.
+	 * @param token
+	 * @return
+	 */
 	public  ResponseEntity<?> getCountOFMyProducts(String token){
 		try {
 			User user = auth.autenticate(token);
@@ -92,6 +118,12 @@ public class ProductsCarService {
 		
 	}
 	
+	/**
+	 * We will remove a product with id on the shopping car 
+	 * @param token
+	 * @param idProduct
+	 * @return
+	 */
 	public  ResponseEntity<?> getRemoveProducts(String token , Integer idProduct){
 		try {
 			User user = auth.autenticate(token);
@@ -105,7 +137,13 @@ public class ProductsCarService {
 		}
 		
 	}
-	
+	/**
+	 * We are going to parse productDTO to ProductsCar.
+	 * @param products
+	 * @param user
+	 * @param id
+	 * @return
+	 */
 	private ProductsCar toParseProduct(Product products , User user , Integer id) {
 		ProductsCar newProduct = new ProductsCar();
 		newProduct.setCategory(products.getCategory());

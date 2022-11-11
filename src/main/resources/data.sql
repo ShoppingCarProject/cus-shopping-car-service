@@ -1,0 +1,2 @@
+INSERT INTO `orderstatus` (`idstatus`, `name`) VALUES (1, 'COMPLETE') , (2, 'IN PROCESS'),(3, 'CANCELED');
+INSERT INTO `user` (`iduser`, `name`, `user`, `password`, `identification`, `address`, `created`) VALUES (1, 'Douglas Isaias Valle Ortiz', 'admin', '$2a$10$I7iEVeb18YE3/g0GFQZPlOd0v9jmTFDBHaF/j.QEPxFIZlqsZZWdS', '000002-2', 'La Libertad, Colon.', '2022-11-10');

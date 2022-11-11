@@ -1,0 +1,601 @@
+{
+	"info": {
+		"_postman_id": "6007a77e-80e5-4f11-b76d-39466baae98d",
+		"name": "cus-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12312184"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "AllProducts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fakestoreapi.com/products/",
+							"protocol": "https",
+							"host": [
+								"fakestoreapi",
+								"com"
+							],
+							"path": [
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProductsById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fakestoreapi.com/products/:id",
+							"protocol": "https",
+							"host": [
+								"fakestoreapi",
+								"com"
+							],
+							"path": [
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Autentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"admin\", \"password\":\"admin\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/login/authenticate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"login",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"admin4\", \"password\":\"admin\" , \"name\": \"Douglas Isaias Valle Ortiz\" ,\"identification\":\"000002-2\"  , \"adress\": \"La Libertad, Colon.\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "Localhost:7000/login/register",
+							"host": [
+								"Localhost"
+							],
+							"port": "7000",
+							"path": [
+								"login",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Validate",
+			"item": [
+				{
+					"name": "ValidateToken",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjQiLCJleHAiOjE2NjgyMTc0MjgsImlhdCI6MTY2ODE5OTQyOH0.f23U4zZ5EiMo2--fQgJioVOHQhRUK92Qs9HeErZRt6iDR8TDFW4NugToSZ2VvmYa2Z3L3nZzroD8YjLYOkHecA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:7000/auth/validate",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"auth",
+								"validate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProductsCarService",
+			"item": [
+				{
+					"name": "AddProductToTheCar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjQiLCJleHAiOjE2NjgyMTc0MjgsImlhdCI6MTY2ODE5OTQyOH0.f23U4zZ5EiMo2--fQgJioVOHQhRUK92Qs9HeErZRt6iDR8TDFW4NugToSZ2VvmYa2Z3L3nZzroD8YjLYOkHecA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "we",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:7001/productscar/6",
+							"host": [
+								"localhost"
+							],
+							"port": "7001",
+							"path": [
+								"productscar",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMyProducts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjQiLCJleHAiOjE2NjgyMTc0MjgsImlhdCI6MTY2ODE5OTQyOH0.f23U4zZ5EiMo2--fQgJioVOHQhRUK92Qs9HeErZRt6iDR8TDFW4NugToSZ2VvmYa2Z3L3nZzroD8YjLYOkHecA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:7001/productscar",
+							"host": [
+								"localhost"
+							],
+							"port": "7001",
+							"path": [
+								"productscar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CountProducts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjQiLCJleHAiOjE2NjgyMTc0MjgsImlhdCI6MTY2ODE5OTQyOH0.f23U4zZ5EiMo2--fQgJioVOHQhRUK92Qs9HeErZRt6iDR8TDFW4NugToSZ2VvmYa2Z3L3nZzroD8YjLYOkHecA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:7001/productscar/count",
+							"host": [
+								"localhost"
+							],
+							"port": "7001",
+							"path": [
+								"productscar",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteOfTheCar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjQiLCJleHAiOjE2NjgyMTc0MjgsImlhdCI6MTY2ODE5OTQyOH0.f23U4zZ5EiMo2--fQgJioVOHQhRUK92Qs9HeErZRt6iDR8TDFW4NugToSZ2VvmYa2Z3L3nZzroD8YjLYOkHecA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:7001/productscar/remove/7",
+							"host": [
+								"localhost"
+							],
+							"port": "7001",
+							"path": [
+								"productscar",
+								"remove",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "MyData",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjQiLCJleHAiOjE2NjgyMTc0MjgsImlhdCI6MTY2ODE5OTQyOH0.f23U4zZ5EiMo2--fQgJioVOHQhRUK92Qs9HeErZRt6iDR8TDFW4NugToSZ2VvmYa2Z3L3nZzroD8YjLYOkHecA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:7001/client",
+							"host": [
+								"localhost"
+							],
+							"port": "7001",
+							"path": [
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getALL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjQiLCJleHAiOjE2NjgyMTc0MjgsImlhdCI6MTY2ODE5OTQyOH0.f23U4zZ5EiMo2--fQgJioVOHQhRUK92Qs9HeErZRt6iDR8TDFW4NugToSZ2VvmYa2Z3L3nZzroD8YjLYOkHecA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:7001/client/all",
+							"host": [
+								"localhost"
+							],
+							"port": "7001",
+							"path": [
+								"client",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Generate new Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjQiLCJleHAiOjE2NjgyMTc0MjgsImlhdCI6MTY2ODE5OTQyOH0.f23U4zZ5EiMo2--fQgJioVOHQhRUK92Qs9HeErZRt6iDR8TDFW4NugToSZ2VvmYa2Z3L3nZzroD8YjLYOkHecA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:7001/orders/generate",
+							"host": [
+								"localhost"
+							],
+							"port": "7001",
+							"path": [
+								"orders",
+								"generate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "My Orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjQiLCJleHAiOjE2NjgyMTc0MjgsImlhdCI6MTY2ODE5OTQyOH0.f23U4zZ5EiMo2--fQgJioVOHQhRUK92Qs9HeErZRt6iDR8TDFW4NugToSZ2VvmYa2Z3L3nZzroD8YjLYOkHecA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:7001/orders/myorders",
+							"host": [
+								"localhost"
+							],
+							"port": "7001",
+							"path": [
+								"orders",
+								"myorders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrdersByStatus",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjIiLCJleHAiOjE2NjgyMTE5MDksImlhdCI6MTY2ODE5MzkwOX0.HW39Ivrn-gAzeK9tE3Fsw3ljqNq6duh-Y-48HBr0CT0y9dqWk5ZEzobio6l6PwCls26xBOn6h9f5WbaUowaZsA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:7001/orders/myorders/21",
+							"host": [
+								"localhost"
+							],
+							"port": "7001",
+							"path": [
+								"orders",
+								"myorders",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderDetail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjQiLCJleHAiOjE2NjgyMTc0MjgsImlhdCI6MTY2ODE5OTQyOH0.f23U4zZ5EiMo2--fQgJioVOHQhRUK92Qs9HeErZRt6iDR8TDFW4NugToSZ2VvmYa2Z3L3nZzroD8YjLYOkHecA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:7001/orders/detail/2",
+							"host": [
+								"localhost"
+							],
+							"port": "7001",
+							"path": [
+								"orders",
+								"detail",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteItem in Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjIiLCJleHAiOjE2NjgyMTE5MDksImlhdCI6MTY2ODE5MzkwOX0.HW39Ivrn-gAzeK9tE3Fsw3ljqNq6duh-Y-48HBr0CT0y9dqWk5ZEzobio6l6PwCls26xBOn6h9f5WbaUowaZsA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:7001/shopping/remove/5",
+							"host": [
+								"localhost"
+							],
+							"port": "7001",
+							"path": [
+								"shopping",
+								"remove",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "Do Payment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjQiLCJleHAiOjE2NjgyMTc0MjgsImlhdCI6MTY2ODE5OTQyOH0.f23U4zZ5EiMo2--fQgJioVOHQhRUK92Qs9HeErZRt6iDR8TDFW4NugToSZ2VvmYa2Z3L3nZzroD8YjLYOkHecA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amountPaid\": 336.0,\r\n    \"type\": \"full\",\r\n    \"idOrder\": 6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:7001/payments/generate",
+							"host": [
+								"localhost"
+							],
+							"port": "7001",
+							"path": [
+								"payments",
+								"generate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAmonutDue",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjQiLCJleHAiOjE2NjgyMTc0MjgsImlhdCI6MTY2ODE5OTQyOH0.f23U4zZ5EiMo2--fQgJioVOHQhRUK92Qs9HeErZRt6iDR8TDFW4NugToSZ2VvmYa2Z3L3nZzroD8YjLYOkHecA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:7001/payments/amountdue/6",
+							"host": [
+								"localhost"
+							],
+							"port": "7001",
+							"path": [
+								"payments",
+								"amountdue",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMyPayments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjQiLCJleHAiOjE2NjgyMTc0MjgsImlhdCI6MTY2ODE5OTQyOH0.f23U4zZ5EiMo2--fQgJioVOHQhRUK92Qs9HeErZRt6iDR8TDFW4NugToSZ2VvmYa2Z3L3nZzroD8YjLYOkHecA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:7001/payments",
+							"host": [
+								"localhost"
+							],
+							"port": "7001",
+							"path": [
+								"payments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

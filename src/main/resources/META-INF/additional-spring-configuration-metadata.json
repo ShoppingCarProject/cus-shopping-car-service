@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "api.params.url",
+    "type": "java.lang.String",
+    "description": "A description for 'api.params.url'"
+  },
+  {
+    "name": "api.params.autentication",
+    "type": "java.lang.String",
+    "description": "A description for 'api.params.autentication'"
+  }
+]}

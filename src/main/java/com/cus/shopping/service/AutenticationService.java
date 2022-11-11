@@ -11,6 +11,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import com.cus.shopping.model.User;
 
+/**
+ * To do authentications on the microservice: cus-security-service
+ * 
+ * this is the most important class, if this doesn't work the project will not work
+ * 
+ * @author Isaias
+ *
+ */
 @Service
 public class AutenticationService {
 	
@@ -23,9 +31,15 @@ public class AutenticationService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
+	/**
+	 * I Will the validation of token on the microservice
+	 * cus-security-service
+	 * 
+	 * @param token
+	 * @return
+	 */
 	public User autenticate(String token){
 		try {
-			logger.info("aqui");
 			HttpHeaders headers = new HttpHeaders();
 			headers.set(HEADER_TOKEN, token);
 			HttpEntity<String> request = new HttpEntity<String>(headers);

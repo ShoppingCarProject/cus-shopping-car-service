@@ -9,7 +9,6 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,19 +24,26 @@ import javax.persistence.Table;
 @Table(name = "orders")
 public class Orders implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idorders", nullable = false)
     private Integer idorders;
     @JoinColumn(name = "idstatus", referencedColumnName = "idstatus", nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private OrderStatus idstatus;
     @JoinColumn(name = "user_iduser", referencedColumnName = "iduser", nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private User userIduser;
 
+    public Orders(Integer idorders, OrderStatus idstatus, User userIduser) {
+		super();
+		this.idorders = idorders;
+		this.idstatus = idstatus;
+		this.userIduser = userIduser;
+	}
     public Orders() {
     }
 

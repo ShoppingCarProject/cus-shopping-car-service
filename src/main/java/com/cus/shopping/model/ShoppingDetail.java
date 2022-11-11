@@ -9,7 +9,6 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,13 +35,21 @@ public class ShoppingDetail implements Serializable {
     @Column(name = "iddetail", nullable = false)
     private Integer iddetail;
     @Basic(optional = false)
+    @Column(name = "title", nullable = false, length = 400)
+    private String title;
+    @Basic(optional = false)
+    @Column(name = "image", nullable = false, length = 500)
+    private String image;
+    @Basic(optional = false)
     @Column(name = "productid", nullable = false)
     private Integer productid;
     @Basic(optional = false)
-    @Column(name = "price", nullable = false, length = 45)
-    private String price;
+    @Column(name = "price", nullable = false)
+    private Double price;
+    @Column(name = "paid", nullable = false)
+    private Boolean paid;
     @JoinColumn(name = "idorders", referencedColumnName = "idorders", nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Orders idorders;
 
     public ShoppingDetail() {
@@ -52,13 +59,32 @@ public class ShoppingDetail implements Serializable {
         this.iddetail = iddetail;
     }
 
-    public ShoppingDetail(Integer iddetail, int productid, String price) {
+    public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public ShoppingDetail(Integer iddetail, int productid, Double price, String title, String image, Boolean paid) {
         this.iddetail = iddetail;
         this.productid = productid;
         this.price = price;
+        this.title = title;
+        this.image = image;
+        this.paid = paid;
     }
 
-    public Integer getIddetail() {
+    public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public Integer getIddetail() {
         return iddetail;
     }
 
@@ -74,15 +100,23 @@ public class ShoppingDetail implements Serializable {
         this.productid = productid;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public Orders getIdorders() {
+    public Boolean getPaid() {
+		return paid;
+	}
+
+	public void setPaid(Boolean paid) {
+		this.paid = paid;
+	}
+
+	public Orders getIdorders() {
         return idorders;
     }
 

@@ -18,71 +18,123 @@ import com.cus.shopping.model.Response;
 import com.cus.shopping.model.ShoppingDetail;
 import com.cus.shopping.model.User;
 
+/**
+ * 
+ * @author Isaias
+ *
+ */
 @Service
 public class ShoppingDetailService {
 
 	Logger logger = LoggerFactory.getLogger(ShoppingDetailService.class);
-	
-	
-	@Autowired 
+
+	@Autowired
 	private ShoppingDetailDao shoppingDetailDao;
-	
+
 	@Autowired
 	private AutenticationService auth;
-	
-	@Autowired 
+
+	@Autowired
 	private ProductsCarDao productsCarDao;
-	
+
+	/**
+	 * we generated a detail of my products on my car to shopping detail service
+	 * 
+	 * @param product
+	 * @param order
+	 * @return
+	 */
 	public Boolean generatoDetailOfCar(List<ProductsCar> product, Orders order) {
 		try {
-			List<ShoppingDetail> shoppingDataParse  = shoppingDetail(product , order);
-			if(shoppingDataParse != null) {
-				List<ShoppingDetail> shopSave =  (List<ShoppingDetail>) shoppingDetailDao.saveAll(shoppingDataParse);
-				if(shopSave != null && shopSave.size() > 0) {
+			List<ShoppingDetail> shoppingDataParse = shoppingDetail(product, order);
+			if (shoppingDataParse != null) {
+				List<ShoppingDetail> shopSave = (List<ShoppingDetail>) shoppingDetailDao.saveAll(shoppingDataParse);
+				if (shopSave != null && shopSave.size() > 0) {
 					try {
 						productsCarDao.deleteAll(product);
 						return Boolean.TRUE;
-					} catch (Exception e) {}
-				}			
+					} catch (Exception e) {
+					}
+				}
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 		return Boolean.FALSE;
 	}
-	public ResponseEntity<?> getDetailByOrder(User user, Integer idOrder){
+
+	/**
+	 * we are going to get detail of my order
+	 * 
+	 * @param user
+	 * @param idOrder
+	 * @return
+	 */
+	public ResponseEntity<?> getDetailByOrder(User user, Integer idOrder) {
 		try {
 			List<ShoppingDetail> detail = shoppingDetailDao.getDatailByOrder(idOrder, user);
-			if(detail != null && detail.size() > 0) {
+			if (detail != null && detail.size() > 0) {
 				return new ResponseEntity<List<ShoppingDetail>>(detail, HttpStatus.OK);
-			}else {
+			} else {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 		} catch (Exception e) {
-			return new ResponseEntity<Response>( new Response("500" , e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+			logger.error(e.getMessage());
+			return new ResponseEntity<Response>(new Response("500", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
-	
-	public ResponseEntity<?> removeProductOnDetail(String token, Integer idOrder){
+
+	/**
+	 * Get amount paid of my order
+	 * 
+	 * @param order
+	 * @param user
+	 * @return
+	 */
+	public Double getAmountPaid(Integer order, User user) {
+		try {
+			Double amount = shoppingDetailDao.getAmountPaid(order, user);
+			return amount != null && amount > 0 ? amount : null;
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			return null;
+		}
+	}
+
+	/**
+	 * Remove a product on my shoppingDetail
+	 * 
+	 * @param token
+	 * @param idOrder
+	 * @return
+	 */
+	public ResponseEntity<?> removeProductOnDetail(String token, Integer idOrder) {
 		try {
 			User user = auth.autenticate(token);
-			if(user == null) {
+			if (user == null) {
 				return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
-			}	
-			Integer rowRemove = shoppingDetailDao.removeProductOnDetail(user.getIduser() , idOrder);
-			return new ResponseEntity<Response>(new Response("200" , String.format("Shoppingdetails removed has been : %s", rowRemove) , rowRemove) , HttpStatus.OK);		
+			}
+			Integer rowRemove = shoppingDetailDao.removeProductOnDetail(user.getIduser(), idOrder);
+			return new ResponseEntity<Response>(
+					new Response("200", String.format("Shoppingdetails removed has been : %s", rowRemove), rowRemove),
+					HttpStatus.OK);
 		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Response>( new Response("500" , e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+			logger.error(e.getMessage());
+			return new ResponseEntity<Response>(new Response("500", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
-	
-	private List<ShoppingDetail> shoppingDetail(List<ProductsCar> product , Orders order) {
+
+	/**
+	 * Parse order to product we get.
+	 * 
+	 * @param product
+	 * @param order
+	 * @return
+	 */
+	private List<ShoppingDetail> shoppingDetail(List<ProductsCar> product, Orders order) {
 		List<ShoppingDetail> finalDetal = null;
-		if(product != null && product.size() > 0 && order != null) {		
-				finalDetal = product.stream().map( p ->{
+		if (product != null && product.size() > 0 && order != null) {
+			finalDetal = product.stream().map(p -> {
 				ShoppingDetail detail = new ShoppingDetail();
 				detail.setImage(p.getImage());
 				detail.setPaid(Boolean.FALSE);

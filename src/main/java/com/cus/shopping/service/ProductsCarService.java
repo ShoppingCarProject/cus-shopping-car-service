@@ -61,9 +61,11 @@ public class ProductsCarService {
 			logger.info(products.toString());
 			return new ResponseEntity<Product>( products, HttpStatus.CREATED);
 		}catch(ResourceAccessException ex) {
+			logger.error(ex.getMessage());
 			return new ResponseEntity<Response>(new Response("500" ,"Resource don't found " + ex.getMessage()) , HttpStatus.INTERNAL_SERVER_ERROR);
 		} 
 		catch (Exception e) {
+			logger.error(e.getMessage());
 			return new ResponseEntity<Response>(new Response("500" , e.getMessage()) , HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	
@@ -90,6 +92,7 @@ public class ProductsCarService {
 				return  new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}		
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			return new ResponseEntity<Response>(new Response("500" , e.getMessage()) , HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
@@ -113,6 +116,7 @@ public class ProductsCarService {
 				return  new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}		
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			return new ResponseEntity<Response>(new Response("500" , e.getMessage()) , HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
@@ -133,6 +137,7 @@ public class ProductsCarService {
 			Integer productos = productsService.deleteById(user , idProduct);
 				return new ResponseEntity<Response>(new Response("200" , String.format("Products removed has been : %s", productos) , productos) , HttpStatus.OK);		
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			return new ResponseEntity<Response>(new Response("500" , e.getMessage()) , HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		

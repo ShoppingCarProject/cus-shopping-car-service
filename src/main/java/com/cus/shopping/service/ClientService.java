@@ -2,6 +2,8 @@ package com.cus.shopping.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ import com.cus.shopping.model.User;
 @Service
 public class ClientService {
 
+	Logger logger = LoggerFactory.getLogger(ClientService.class);
+	
 	@Autowired
 	private AutenticationService auth;
 	
@@ -39,6 +43,7 @@ public class ClientService {
 			user.setPassword(null);
 			return ResponseEntity.ok(user);
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			return new ResponseEntity<Response>(new Response("500" , e.getMessage()) , HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
@@ -64,6 +69,7 @@ public class ClientService {
 			}
 			return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			return new ResponseEntity<Response>(new Response("500" , e.getMessage()) , HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		

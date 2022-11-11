@@ -24,4 +24,12 @@ public interface ShoppingDetailDao extends CrudRepository<ShoppingDetail, Intege
 	@Query(value = "DELETE s FROM shoppingdetail s INNER JOIN orders o ON o.idorders=s.idorders where o.user_iduser = :iduser and s.iddetail = :detail and s.paid = 0" , nativeQuery = true )
 	Integer removeProductOnDetail(@Param("iduser") Integer iduser , @Param("detail") Integer detail);
 
+	
+	@Query("SELECT SUM(e.price) FROM ShoppingDetail e WHERE e.idorders.idorders = :idorders and e.idorders.userIduser = :user and e.paid = FALSE")
+	Double getAmountPaid(@Param("idorders") Integer idorders , @Param("user") User user);
+	
+	@Modifying
+	@Transactional
+	@Query(value = "UPDATE ShoppingDetail e SET e.paid = TRUE WHERE e.idorders.idorders = :idOrder " )
+	Integer updateToPaid(@Param("idOrder") Integer idOrder);
 }

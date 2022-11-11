@@ -40,7 +40,6 @@ public class AutenticationService {
 	 */
 	public User autenticate(String token){
 		try {
-			logger.info("aqui");
 			HttpHeaders headers = new HttpHeaders();
 			headers.set(HEADER_TOKEN, token);
 			HttpEntity<String> request = new HttpEntity<String>(headers);

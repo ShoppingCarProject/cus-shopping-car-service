@@ -24,7 +24,8 @@ import javax.persistence.Table;
 @Table(name = "orders")
 public class Orders implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -37,6 +38,12 @@ public class Orders implements Serializable {
     @ManyToOne(optional = false)
     private User userIduser;
 
+    public Orders(Integer idorders, OrderStatus idstatus, User userIduser) {
+		super();
+		this.idorders = idorders;
+		this.idstatus = idstatus;
+		this.userIduser = userIduser;
+	}
     public Orders() {
     }
 

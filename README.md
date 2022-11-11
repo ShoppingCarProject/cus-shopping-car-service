@@ -39,6 +39,11 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 >•	Endpoints Pago ✅
 >•	Para este punto es simular el pago. ✅
 
+## Arquitecture
+
+![arquitectura de solucion](https://user-images.githubusercontent.com/58859695/201437514-2fa07df4-54cd-46b9-9a22-8a920f1c5def.png)
+
+
 ## Endpoints examples: 
 ## PRODUCTS
 Add products to the shoppingcar
